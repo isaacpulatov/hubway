@@ -8,6 +8,6 @@ ROUND(100 * CAST(COUNT(CASE WHEN (start_station <> end_station) THEN 1 ELSE NULL
 
 FROM trips
 GROUP BY start_station
-order by perc_return desc
+ORDER BY perc_return desc
 
 
