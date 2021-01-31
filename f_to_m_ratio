@@ -1,19 +1,22 @@
-Select c.start_station, c.male_count, c.male_avg_duration, c.total_male_time,
+SELECT c.start_station, c.male_count, c.male_avg_duration, c.total_male_time,
 d.female_count, d.female_avg_duration, d.total_female_time, 
-d.total_female_time/c.total_male_time as 'f_to_m_ratio' from 
+d.total_female_time/c.total_male_time as 'f_to_m_ratio' 
+
+FROM 
 
 (SELECT start_station, gender, COUNT(*) as 'male_count', AVG(duration) as 'male_avg_duration',
-COUNT(*) * AVG(duration) as 'total_male_time' from trips 
+COUNT(*) * AVG(duration) as 'total_male_time' from TRIPS
 GROUP BY 1,2
-having gender = 'Male') c
+HAVING gender = 'Male') c
 
-Left Join
+LEFT JOIN
 
 (SELECT start_station, gender, COUNT(*) as 'female_count', AVG(duration) as 'female_avg_duration',
-COUNT(*) * AVG(duration) as 'total_female_time' from trips
+COUNT(*) * AVG(duration) as 'total_female_time' from TRIPS
 GROUP BY 1,2
-having gender = 'Female') d
+HAVING gender = 'Female') d
 
 on c.start_station = d.start_station 
 
-order by f_to_m_ratio
+ORDER BY f_to_m_ratio
+
