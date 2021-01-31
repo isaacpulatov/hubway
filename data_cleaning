@@ -1,0 +1,24 @@
+SELECT gender, AVG(duration) from trips
+GROUP BY gender;
+
+--I noticed there were two 'Females'
+
+SELECT count(id), gender, length(gender), AVG(duration) from trips
+GROUP BY gender;
+
+--I suspected one had an extra white space, and was correct
+--There is only one to be edited
+
+Select * from trips
+where length(gender) = 7;
+
+--There doesn't seem to be anything unique about this
+
+UPDATE trips SET gender = 'Female' WHERE length(gender) = 7;
+
+--I've updated it
+
+SELECT gender, AVG(duration) from trips
+GROUP BY gender;
+
+--The gender column is good
